@@ -15,7 +15,6 @@ for key, val in my_dict.items():
 # Write the functions is_odd and is_even that are shown in the lecture
 def is_odd(integer):
     """return a boolean to answer whether the integer is odd"""
-
     if isinstance(integer, int):
         return integer % 2 == 1
     else:
@@ -24,7 +23,6 @@ def is_odd(integer):
 
 def is_even(integer):
     """return a boolean to answer whether the integer is event"""
-    
     return not is_odd(integer)
 
 # Loop over my_first_list and square the value if the value is a number, 
