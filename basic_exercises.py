@@ -50,4 +50,9 @@ def square_dict_values(dictionary):
         print("Ruh'Roh! The function requires a dictionary")
 
 r_values_dict = {"model1": 0.754, "model2": 0.84}
+r_values_dict_expected_fail1 = {"model1": 0.754, "model2": 0.84, "model3": "0.10"}
+r_values_dict_expected_fail2 = [0.754, 0.84, 0.10]
+
 square_dict_values(r_values_dict)
+square_dict_values(r_values_dict_expected_fail1)
+square_dict_values(r_values_dict_expected_fail2)
