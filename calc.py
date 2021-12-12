@@ -2,7 +2,8 @@ import argparse
 
 
 def subtract(list_of_2_numbers):
-    """get the difference between 2 numbers
+    """get the difference between 2 numbers. negative differences
+    are coerced to 0.
 
     Parameters
     ----------
@@ -19,6 +20,8 @@ def subtract(list_of_2_numbers):
         raise ValueError(f"function needs a list of 2. yours has {list_size} elements")
     number1, number2 = list_of_2_numbers
     difference = number1 - number2
+    if difference < 0:
+        difference = 0
     print(f"the difference of {number1} minus {number2} is: {difference}")
     return difference
 
