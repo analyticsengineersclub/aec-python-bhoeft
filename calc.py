@@ -16,7 +16,9 @@ def subtract(number1, number2):
     int
         the difference between two numbers
     """
-    return number1 - number2
+    difference = number1 - number2
+    print(f"the difference of {number1} minus {number2} is: {difference}")
+    return difference
 
 
 def multiply(list_of_numbers):
@@ -37,6 +39,7 @@ def multiply(list_of_numbers):
     product = 1
     for n in list_of_numbers:
         product = product * n
+    print(f"the product is: {product}")
     return product
     
 
@@ -60,7 +63,9 @@ def divide(number1, number2, decimals=3):
     if number2 == 0:
         print("cannot divide")
     else:
-        return round(number1 / number2, decimals)
+        quotient = round(number1 / number2, decimals)
+        print(f"the quotient of {number1} divided by {number2} is: {quotient}")
+        return quotient
 
 
 # invoking as a script
@@ -95,15 +100,10 @@ if __name__ == "__main__":
         print(f"the sum is: {sum_result}")
 
     elif args.subcommand == "subtract":
-        difference = subtract(args.ints_to_subtract[0], args.ints_to_subtract[1])
-        print(f"the difference of {args.ints_to_subtract[0]} minus {args.ints_to_subtract[1]} is: {difference}")
+        subtract(args.ints_to_subtract[0], args.ints_to_subtract[1])
     
     elif args.subcommand == "multiply":
-        product = multiply(args.ints_to_multiply)
-        print(f"the product is: {product}")
+        multiply(args.ints_to_multiply)
 
     elif args.subcommand == "divide":
-        num_to_divide = args.ints_to_divide[0]
-        divide_by = args.ints_to_divide[1]
-        quotient = divide(num_to_divide, divide_by)
-        print(f"the quotient of {num_to_divide} divided by {divide_by} is: {quotient}")
+        divide(args.ints_to_divide[0], args.ints_to_divide[1])
