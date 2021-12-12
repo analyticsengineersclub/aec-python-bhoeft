@@ -40,8 +40,27 @@ def multiply(list_of_numbers):
     return product
     
 
-def divide(number1, number2):
-    pass
+def divide(number1, number2, decimals=3):
+    """get the quotient from dividing 2 numbers.
+    
+    Parameters
+    ----------
+    number1 : int
+        the number to be divided
+    number2 : int
+        the number to divide by
+    decimals : int
+        decimals to round to. default: thousandth
+
+    Returns
+    -------
+    int
+        the result of dividing number1 by number2
+    """
+    if number2 == 0:
+        print("cannot divide")
+    else:
+        return round(number1 / number2, decimals)
 
 
 # invoking as a script
@@ -65,7 +84,10 @@ if __name__ == "__main__":
 
     parser_multiply = subparser.add_parser("multiply", help="multiply integers")
     parser_multiply.add_argument("ints_to_multiply", nargs="+", type=int)
-    
+
+    parser_divide = subparser.add_parser("divide", help="divide 2 integers")
+    parser_divide.add_argument("ints_to_divide", nargs=2, type=int)
+
     args = parser.parse_args()  # 3
 
     if args.subcommand == "add":
@@ -74,11 +96,14 @@ if __name__ == "__main__":
 
     elif args.subcommand == "subtract":
         difference = subtract(args.ints_to_subtract[0], args.ints_to_subtract[1])
-        print(f"the difference is: {difference}")
+        print(f"the difference of {args.ints_to_subtract[0]} minus {args.ints_to_subtract[1]} is: {difference}")
     
     elif args.subcommand == "multiply":
         product = multiply(args.ints_to_multiply)
         print(f"the product is: {product}")
 
     elif args.subcommand == "divide":
-        pass
+        num_to_divide = args.ints_to_divide[0]
+        divide_by = args.ints_to_divide[1]
+        quotient = divide(num_to_divide, divide_by)
+        print(f"the quotient of {num_to_divide} divided by {divide_by} is: {quotient}")
