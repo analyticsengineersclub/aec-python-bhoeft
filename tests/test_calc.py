@@ -18,50 +18,69 @@ class TestsSubtract:
     """test normal, exceptions, and basic edge cases of subtract()"""
 
     def test_subtract_normal(self, list_2_integers):
-        """check the difference is as expected, when normal inputs are provided"""
+        """check the difference is as expected when a list of ints provided"""
         expected_result = 40
         actual_result = subtract(list_2_integers)
         assert actual_result == expected_result
 
     def test_subtract_less_than_zero(self):
-        """check that if the difference of two numbers is negative, the function coerces it to zero"""
+        """check that if the difference of two numbers is negative,
+        the function coerces the results to zero
+        """
         expected_result = 0
         actual_result = subtract([5, 10])
         assert actual_result == expected_result
 
     def test_subtract_large_list(self, list_5_integers):
-        """check that subtract() handles a list input >2 elements by raising
-        expected exception"""
+        """check that subtract() raises expected exception when
+        a list of more than 2 elements is passed
+        """
         expected_exception_msg = f"function needs a list of 2. yours has {len(list_5_integers)} elements"
         with pytest.raises(ValueError) as e:
             subtract(list_5_integers)
         assert e.match(expected_exception_msg)
-    
-    @pytest.mark.skip
-    def test_subtract_empty_list(self):
-        pass
 
-@pytest.mark.skip
+
 class TestsMultiply:
     """test normal, exceptions, and basic edge cases of multiply()"""
 
-    def test_multiply_normal(self, list_2_integers):
-        """check the product is as expected, when normal inputs are provided"""
-    
-    def test_multiply_empty_list(self):
-        pass
+    def test_multiply_two_ints(self, list_2_integers):
+        """check the product is as expected, when list of 2 ints provided"""
+        expected_result = 500
+        actual_result = multiply(list_2_integers)
+        assert actual_result == expected_result
 
-@pytest.mark.skip
+    def test_multiply_many_ints(self, list_5_integers):
+        """check the product is as expected with list of more than 2 ints"""
+        expected_result = 120
+        actual_result = multiply(list_5_integers)
+        assert actual_result == expected_result
+
+
 class TestsDivide:
     """test normal, exceptions, and basic edge cases of divide()"""
 
     def test_divide_normal(self, list_2_integers):
-        """check the product is as expected, when normal inputs are provided"""
-        pass
+        """check the quotient is as expected with a list of 2 ints"""
+        expected_result = 5.0
+        actual_result = divide(list_2_integers)
+        assert actual_result == expected_result
 
-    def test_divide_by_zero(self, list_2_integers):
-        """check the product is as expected, when normal inputs are provided"""
-        pass
+    def test_divide_by_zero(self):
+        """check the function raises expected exception message
+        when a list has a 0 in the denominator position
+        """
+        list_with_a_zero = [199, 0]
+        expected_exception_msg = "cannot divide, the divisor is 0"
+        with pytest.raises(ValueError) as e:
+            divide(list_with_a_zero)
+            e.match(expected_exception_msg)
 
     def test_divide_large_list(self, list_5_integers):
-        pass
+        """check the function raises expected exception message
+        when trying to divide with a list of more than 2 elements
+        """
+        expected_exception_msg = f"function needs a list of 2. yours has {len(list_5_integers)} elements"
+        with pytest.raises(ValueError) as e:
+            divide(list_5_integers)
+            e.match(expected_exception_msg)
