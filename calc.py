@@ -28,12 +28,12 @@ def subtract(list_of_2_numbers):
 
 def multiply(list_of_numbers):
     """get the product of a list of more than 1 number
-    
+
     Parameters
     ----------
     list_of_numbers : list
         the numbers you want to multiply.
-    
+
     Returns
     -------
     int
@@ -46,11 +46,11 @@ def multiply(list_of_numbers):
         product = product * n
     print(f"the product is: {product}")
     return product
-    
+
 
 def divide(list_of_2_numbers, decimals=3):
     """get the quotient from dividing 2 numbers.
-    
+
     Parameters
     ----------
     list_of_2_numbers : list
@@ -66,7 +66,7 @@ def divide(list_of_2_numbers, decimals=3):
     list_size = len(list_of_2_numbers)
     if list_size != 2:
         raise ValueError(f"function needs a list of 2. yours has {list_size} elements")
-    
+
     number1, number2 = list_of_2_numbers
     if number2 == 0:
         raise ValueError("cannot divide, the divisor is 0")
@@ -78,16 +78,21 @@ def divide(list_of_2_numbers, decimals=3):
 
 # invoking as a script
 if __name__ == "__main__":
-    
-    # notes to future self from https://docs.python.org/3/library/argparse.html: 
+
+    # notes to future self from https://docs.python.org/3/library/argparse.html:
     # 1: holds all info necessary to parse the command line into py data types
     # 2: method creates a special action object so program functionality can be broken into sub-commands
     # 3: parses arguments from strings to objects, assigns them as attributes of the namespace
-    
-    parser = argparse.ArgumentParser(description="command-line calculator", prog="Calculator",
-                                     epilog="%(prog)s was built to help learn how dbt was built")  # 1
 
-    subparser = parser.add_subparsers(title="subcommands", help="subcommand help", dest="subcommand")  # 2
+    parser = argparse.ArgumentParser(
+        description="command-line calculator",
+        prog="Calculator",
+        epilog="%(prog)s was built to help learn how dbt was built",
+    )  # 1
+
+    subparser = parser.add_subparsers(
+        title="subcommands", help="subcommand help", dest="subcommand"
+    )  # 2
 
     parser_add = subparser.add_parser(name="add", help="add integers")
     parser_add.add_argument("ints_to_sum", nargs="+", type=int)
@@ -109,7 +114,7 @@ if __name__ == "__main__":
 
     elif args.subcommand == "subtract":
         subtract(args.ints_to_subtract)
-    
+
     elif args.subcommand == "multiply":
         multiply(args.ints_to_multiply)
 
